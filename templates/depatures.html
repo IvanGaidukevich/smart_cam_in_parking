@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Выезды ТС{% endblock title %}
+{% block header %}Выезды ТС{% endblock header %}
+{% block content %}
+
+    <div class="container">
+        <h4>Выезд из паркинга</h4>
+        <table class="table table-striped">
+            <thead>
+            <th>Id</th>
+            <th>Время</th>
+            <th>Транспортное средство</th>
+            </thead>
+            <tbody>
+            {% for departure in page_obj %}
+                <tr>
+                    <td>{{ departure.id }}</td>
+                    <td>{{ departure.time }}</td>
+                    <td>{{ departure.vehicle }}</td>
+                </tr> {% endfor %}
+            </tbody>
+        </table>
+
+
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">Первая</a> |
+            <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a> |
+        {% endif %}
+
+        <span class="current">
+            Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Следующая</a> |
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя</a> |
+        {% endif %}
+    </span>
+        </div>
+    </div>
+{% endblock content %}

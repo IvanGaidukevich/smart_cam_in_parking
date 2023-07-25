@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Изменить данные собственника ТС{% endblock title %}
+{% block header %}Изменить данные собственника ТС{% endblock header %}
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="surname">Фамилия:<br/>
+                        <input type="text" class="form-control" name="surname" id="surname" placeholder="Иванов"
+                               value="{{ owner.surname }}" required/>
+                        <div class="form-text">Обязательно для заполнения</div>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="name">Имя:<br/>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Иван"
+                               value="{{ owner.name }}" required/>
+                        <div class="form-text">Обязательно для заполнения</div>
+                </label>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label" for="middle_name">Отчество:
+                <input type="text" class="form-control" name="middle_name" id="middle_name"
+                       value="{{ owner.middle_name }}" placeholder="Иванович"/>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label" for="tel">Телефон:
+                <input type="text" class="form-control" name="tel" id="tel" placeholder="+7XXXXXXXXXX"
+                       value="{{ owner.tel }}" required/>
+            </label>
+            <div class="form-text">Обязательно для заполнения</div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label" for="email">E-mail:
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com"
+                       value="{{ owner.email }}" required/>
+                <div class="form-text">Обязательно для заполнения</div>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label class="form-label" for="info">Дополнительное инфо:
+                <textarea class="form-control" name="info" id="info"></textarea>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input class="btn btn-primary mb-3" type="submit" value="Добавить">
+        </div>
+    </div>
+    </form>
+    </div>
+{% endblock content %}

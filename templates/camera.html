@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Управление камерой{% endblock title %}
+{% block header %}Управление камерой{% endblock header %}
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="switch">Работа камер въезда и выезда:
+                        <select class="form-select" name="switch" id="switch">
+                                <option value="0">Выкл</option>
+                                <option value="1">Вкл</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input class="btn btn-primary mb-3" type="submit" value="Выбрать">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

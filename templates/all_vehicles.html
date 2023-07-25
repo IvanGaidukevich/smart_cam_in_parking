@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Список всех транспортных средств, зарегистрированных в паркинге{% endblock title %}
+{% block header %}Список всех транспортных средств, зарегистрированных в паркинге{% endblock header %}
+{% block content %}
+    <div class="container-fluid">
+        <div>
+            <form method="GET" action="/vehicle/create/">
+                <input class="btn btn-primary mb-3" type="submit" value="Добавить новое ТС">
+            </form>
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <th>Id</th>
+        <th>Рег. знак ТС</th>
+        <th>Тип ТС</th>
+        <th>Название модели ТС</th>
+        <th>Цвет ТС</th>
+        <th>Сейчас в паркинге</th>
+        <th>Въезд/выезд</th>
+        <th>Владелец</th>
+        <th>Инфо</th>
+        <th>Действия</th>
+        </thead>
+        <tbody>
+        {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle.id }}</td>
+                <td>{{ vehicle.number }}</td>
+                <td>{{ vehicle.type }}</td>
+                <td>{{ vehicle.model_name }}</td>
+                <td>{{ vehicle.color }}</td>
+                <td>
+                    {% if vehicle.in_parking %}
+                        да
+                    {% else %}
+                        нет
+                    {% endif %}
+                </td>
+                <td>{{ vehicle.status }}</td>
+                <td>{{ vehicle.owner }}</td>
+                <td>{{ vehicle.info }}</td>
+                <td><a href="edit/{{ vehicle.id }}">Изменить</a> | <a href="delete/{{ vehicle.id }}">Удалить</a>
+                </td>
+            </tr> {% endfor %}</tbody>
+    </table>
+    </div>
+{% endblock content %}
+</body>

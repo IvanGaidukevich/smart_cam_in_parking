@@ -1,0 +1,45 @@
+{% extends "base_log.html" %}
+{% block title %}Вход в систему{% endblock title %}
+
+{% block content %}
+    <section class="text-center">
+
+        <div class="p-5 bg-image" style="
+        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+        height: 150px;
+        "></div>
+
+        <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+        margin-top: -100px;
+        background: hsla(0, 0%, 100%, 0.9);
+        backdrop-filter: blur(35px);
+        ">
+            <div class="card-body py-5 px-md-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8">
+                        <h1 class="fw-bold mb-5">SCIP</h1>
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <div class="form-outline mb-4">
+                                <input type="text" name="username" id="username" class="form-control"/>
+                                <label class="form-label" for="username">Логин</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="password" name="password" id="password" class="form-control"/>
+                                <label class="form-label" for="password">Пароль</label>
+                            </div>
+                            <input type="submit" class="btn btn-primary" value="Войти">
+                            {% if form.errors %}
+                                <div style="
+                                color: crimson;
+                                margin-top: 20px;">Ошибка логина или пароля. Попробуйте еще раз.
+                                </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

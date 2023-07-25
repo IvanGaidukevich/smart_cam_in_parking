@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Собственники транспортных средств{% endblock title %}
+{% block header %}Собственники транспортных средств{% endblock header %}
+{% block content %}
+    <div class="container-fluid">
+        <div>
+            <form method="GET" action="/owner/create/">
+                <input class="btn btn-primary mb-3" type="submit" value="Добавить нового владельца">
+            </form>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <th>Id</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Инфо</th>
+            <th>Действия</th>
+            </thead>
+            <tbody>
+            {% for owner in owners %}
+                <tr>
+                    <td>{{ owner.id }}</td>
+                    <td>{{ owner.surname }}</td>
+                    <td>{{ owner.name }}</td>
+                    <td>{{ owner.middle_name }}</td>
+                    <td>{{ owner.tel }}</td>
+                    <td>{{ owner.email }}</td>
+                    <td>{{ owner.info }}</td>
+                    <td><a href="edit/{{ owner.id }}">Изменить</a> | <a href="delete/{{ owner.id }}">Удалить</a></td>
+                </tr> {% endfor %}</tbody>
+        </table>
+    </div>
+{% endblock content %}

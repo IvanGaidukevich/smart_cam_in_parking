@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Добавить транспортное средство{% endblock title %}
+{% block header %}Добавить транспортное средство{% endblock header %}
+{% block content %}
+    <div class="container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="number">Рег. знак ТС:
+                        <input type="text" class="form-control" name="number" id="number" required
+                               pattern="^(([АВЕКМНОРСТУХ]\d{3}(?<!000)[АВЕКМНОРСТУХ]{1,2})(\d{2,3})|(\d{4}(?<!0000)[АВЕКМНОРСТУХ]{2})(\d{2})|(\d{3}(?<!000)(C?D|[ТНМВКЕ])\d{3}(?<!000))(\d{2}(?<!00))|([ТСК][АВЕКМНОРСТУХ]{2}\d{3}(?<!000))(\d{2})|([АВЕКМНОРСТУХ]{2}\d{3}(?<!000)[АВЕКМНОРСТУХ])(\d{2})|([АВЕКМНОРСТУХ]\d{4}(?<!0000))(\d{2})|(\d{3}(?<!000)[АВЕКМНОРСТУХ])(\d{2})|(\d{4}(?<!0000)[АВЕКМНОРСТУХ])(\d{2})|([АВЕКМНОРСТУХ]{2}\d{4}(?<!0000))(\d{2})|([АВЕКМНОРСТУХ]{2}\d{3}(?<!000))(\d{2,3})|(^Т[АВЕКМНОРСТУХ]{2}\d{3}(?<!000)\d{2,3}))"
+                               placeholder="А111АА198"/>
+                    </label>
+                    <div class="form-text">Обязательно для заполнения</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="type">Тип ТС:
+                        <select class="form-select" name="type" id="type">
+                            {% for type in types %}
+                                <option value="{{ type.id }}">{{ type.type_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <div class="form-text">Обязательно для заполнения</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="model_name">Модель ТС:
+                        <select class="form-select" name="model_name" id="model_name" required>
+                            {% for model_name in model_names %}
+                                <option value="{{ model_name.id }}">{{ model_name.model_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <div class="form-text">Обязательно для заполнения</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="model_name">Цвет кузова:
+                        <select class="form-select" name="color" id="model_name" required>
+                            {% for color in colors %}
+                                <option value="{{ color.id }}">{{ color.color1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <div class="form-text">Обязательно для заполнения</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="owner">Владелец:
+                        <select class="form-select" name="owner" id="owner" required>
+                            {% for owner in owners %}
+                                <option value="{{ owner.id }}">{{ owner.surname }} {{ owner.name }} {{ owner.middle_name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <div class="form-text">Обязательно для заполнения</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="info">Дополнительное инфо:
+                        <textarea class="form-control" name="info" id="info"></textarea>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label" for="info">Статус ТС:
+                    <select class="form-select" name="status" id="status" required>
+                            {% for status in statuses %}
+                                <option value="{{ status.id }}">{{ status.status }}
+                                </option>
+                            {% endfor %}
+                    </select>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col"><br/>
+                    <input class="btn btn-primary mb-3" type="submit" value="Добавить">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
